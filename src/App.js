@@ -1,25 +1,20 @@
 import React from "react";
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
 import "semantic-ui-css/semantic.min.css";
-import Grid from "@material-ui/core/Grid";
-import { Card, Icon } from "semantic-ui-react";
+import InfoStorageContainer from "src/app/infoStorage/components/InfoStorageContainer";
+import Notes from "src/app/infoStorage/components/Notes";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 
-function App() {
-  return (
-    <div css={{ textAlign: "center" }} className="App">
-      <Grid container xs={12} justify="center">
-        <Grid item xs="auto">
-          <Card>
-            <Card.Content css={{ display: "flex", justifyContent: "center" }}>
-              <Icon size="large" name="hand peace outline" />
-              <Card.Header css={{ color: "grey" }}>Hello there!</Card.Header>
-            </Card.Content>
-          </Card>
-        </Grid>
-      </Grid>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/infoStorage" component={InfoStorageContainer} />
+          <Route exact path="/" component={Notes} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
