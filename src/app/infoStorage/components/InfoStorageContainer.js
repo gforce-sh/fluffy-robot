@@ -3,8 +3,9 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import "semantic-ui-css/semantic.min.css";
 import Grid from "@material-ui/core/Grid";
-import { Card, Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Divider, Segment, Icon } from "semantic-ui-react";
+import UploadArena from "./UploadArena";
+import Notes from "./Notes";
 
 class InfoStorageContainer extends React.Component {
   constructor(props) {
@@ -13,36 +14,28 @@ class InfoStorageContainer extends React.Component {
   }
   render() {
     return (
-      <div css={{ textAlign: "center" }} className="InfoStorageContainer">
-        <Grid container xs={12} justify="center">
-          <Grid item xs={12}>
-            <div css={{ height: 100 }} />
-          </Grid>
-          <Grid item xs={12}>
-            <div
-              css={{
-                display: "flex",
-                justifyContent: "center"
-              }}>
-              <Link to="/">
-                <Card>
-                  <Card.Content
-                    style={{ background: "grey" }}
-                    css={{
-                      display: "flex",
-                      justifyContent: "center"
-                    }}>
-                    <Icon size="large" name="hand peace outline" color="teal" />
-                    <Card.Header style={{ color: "white" }}>
-                      InfoStorageContainer!
-                    </Card.Header>
-                  </Card.Content>
-                </Card>
-              </Link>
-            </div>
+      <Segment basic>
+        <Grid container justify="center">
+          <Grid
+            item
+            spacing={2}
+            container
+            xs={12}
+            direction="row"
+            alignItems="center"
+            justify="space-around">
+            <Grid item xs="auto">
+              <Notes />
+            </Grid>
+            <Grid item xs="auto">
+              <UploadArena />
+            </Grid>
+            <Divider vertical>
+              <Icon name="paper plane outline" />
+            </Divider>
           </Grid>
         </Grid>
-      </div>
+      </Segment>
     );
   }
 }
