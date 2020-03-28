@@ -1,7 +1,7 @@
 import React from "react";
 import "semantic-ui-css/semantic.min.css";
-import InfoStorageContainer from "src/app/infoStorage/components/InfoStorageContainer";
-import HomePageContainer from "src/app/homePage/components/HomePageContainer";
+import InfoStorageContainer from "./app/infoStorage/components/InfoStorageContainer";
+import HomePageContainer from "./app/homePage/components/HomePageContainer";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { Label } from "semantic-ui-react";
