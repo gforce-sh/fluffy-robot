@@ -1,18 +1,36 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+// const path = require("path");
 
 module.exports = {
+  // entry: "./public/index.html",
+  // output: {
+  //   path: path.resolve(__dirname, "dist"),
+  //   filename: "main.js",
+  //   publicPath: "/"
+  // },
+  resolve: {
+    alias: {
+      "@src": "./",
+      "@app": `./app`,
+      "@api": `./api`,
+      "@common": `./common`
+    }
+  },
+  devServer: {
+    host: "localhost",
+    port: process.env.PORT || 5000,
+    historyApiFallback: true
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_componets)/,
+        exclude: /(node_modules|bower_components)/,
         use: {
           loader: "babel-loader",
           options: {
-            presets: [
-              "@babel/preset-env",
-              "@babel/preset-react"
-            ],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
             plugins: [
               "@babel/transform-runtime",
               "@babel/syntax-dynamic-import",
@@ -54,6 +72,9 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./public/index.html",
       filename: "./index.html"
+    }),
+    new webpack.ProvidePlugin({
+      React: "react"
     })
   ]
 };
