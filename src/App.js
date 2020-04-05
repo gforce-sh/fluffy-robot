@@ -1,41 +1,33 @@
 import React from "react";
-import "semantic-ui-css/semantic.min.css";
+/** @jsx jsx */
+import { jsx } from "@emotion/core";
+// import "semantic-ui-css/semantic.min.css";
 import InfoStorageContainer from "src/app/infoStorage/components/InfoStorageContainer";
 import HomePageContainer from "src/app/homePage/components/HomePageContainer";
+import NoteTaker from "src/app/noteTaker/components/NoteTaker";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { Label } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import TabBar from "src/app/tabBar/TabBar";
 
+const pages = [
+  { heading: "Home", path: "/" },
+  { heading: "Info Manager", path: "/infoStorage" },
+  { heading: "Study", path: "/noteTaker" }
+];
 class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
+        <div>
+          <TabBar pages={pages} />
+        </div>
         <Switch>
           <div className="App">
-            <Grid
-              container
-              spacing={1}
-              css={{ background: "whitesmoke" }}
-              className="NavBar"
-              justify="flex-start">
-              {[
-                { path: "/", name: "Home" },
-                { path: "/infoStorage", name: "Info Storage" }
-              ].map(page => (
-                <Grid item xs="auto" key={page.name}>
-                  <Link to={page.path}>
-                    <Label
-                      color="grey"
-                      css={{ color: "white" }}
-                      content={page.name}
-                    />
-                  </Link>
-                </Grid>
-              ))}
-            </Grid>
             <Route exact path="/" component={HomePageContainer} />
             <Route exact path="/infoStorage" component={InfoStorageContainer} />
+            <Route exact path="/noteTaker" component={NoteTaker} />
           </div>
         </Switch>
       </BrowserRouter>
