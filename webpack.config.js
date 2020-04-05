@@ -1,14 +1,14 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
-// const path = require("path");
+const path = require("path");
 
 module.exports = {
   // entry: "./public/index.html",
-  // output: {
-  //   path: path.resolve(__dirname, "dist"),
-  //   filename: "main.js",
-  //   publicPath: "/"
-  // },
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+    publicPath: "/"
+  },
   resolve: {
     alias: {
       "@src": "./",
