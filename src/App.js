@@ -6,12 +6,12 @@ import InfoStorageContainer from "src/app/infoStorage/components/InfoStorageCont
 import HomePageContainer from "src/app/homePage/components/HomePageContainer";
 import NoteTaker from "src/app/noteTaker/components/NoteTaker";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import TabBar from "src/app/tabBar/TabBar";
+import TabBar from "src/common/TabBar";
 
 const pages = [
   { heading: "Home", path: "/", icon: "home" },
   { heading: "Info Manager", path: "/infoStorage", icon: "clipboard" },
-  { heading: "Study", path: "/noteTaker", icon: "pencil alternate" }
+  { heading: "Study", path: "/noteTaker", icon: "pencil alternate" },
 ];
 class App extends React.Component {
   constructor(props) {
