@@ -6,31 +6,30 @@ import InfoStorageContainer from "src/app/infoStorage/components/InfoStorageCont
 import HomePageContainer from "src/app/homePage/components/HomePageContainer";
 import NoteTaker from "src/app/noteTaker/components/NoteTaker";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
-import { Label } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import TabBar from "src/app/tabBar/TabBar";
 
 const pages = [
-  { heading: "Home", path: "/" },
-  { heading: "Info Manager", path: "/infoStorage" },
-  { heading: "Study", path: "/noteTaker" }
+  { heading: "Home", path: "/", icon: "home" },
+  { heading: "Info Manager", path: "/infoStorage", icon: "clipboard" },
+  { heading: "Study", path: "/noteTaker", icon: "pencil alternate" }
 ];
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   render() {
     return (
-      <BrowserRouter>
-        <div>
+      <div className="App">
+        <BrowserRouter>
           <TabBar pages={pages} />
-        </div>
-        <Switch>
-          <div className="App">
+          <Switch>
             <Route exact path="/" component={HomePageContainer} />
             <Route exact path="/infoStorage" component={InfoStorageContainer} />
             <Route exact path="/noteTaker" component={NoteTaker} />
-          </div>
-        </Switch>
-      </BrowserRouter>
+          </Switch>
+        </BrowserRouter>
+      </div>
     );
   }
 }
