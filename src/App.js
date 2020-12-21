@@ -1,10 +1,5 @@
-import React from "react";
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
-// import "semantic-ui-css/semantic.min.css";
-import InfoStorageContainer from "src/app/infoStorage/components/InfoStorageContainer";
-import HomePageContainer from "src/app/homePage/components/HomePageContainer";
-import NoteTaker from "src/app/noteTaker/components/NoteTaker";
+import InfoStorageContainer from "@app/infoStorage/components/InfoStorageContainer";
+import HomePageContainer from "@app/homePage/components/HomePageContainer";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import TabBar from "src/common/TabBar";
 

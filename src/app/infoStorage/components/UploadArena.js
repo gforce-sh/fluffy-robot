@@ -1,6 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
-import "semantic-ui-css/semantic.min.css";
 import { Segment, Icon, Button, Header } from "semantic-ui-react";
 
 const UploadArena = () => {
