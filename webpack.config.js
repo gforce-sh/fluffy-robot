@@ -13,6 +13,7 @@ module.exports = {
     alias: {
       "@src": path.resolve(__dirname, "./"),
       "@app": path.resolve(__dirname, "./src/app"),
+      "@common": path.resolve(__dirname, "./src/common"),
     },
   },
   devServer: {

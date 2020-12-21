@@ -1,7 +1,7 @@
 import InfoStorageContainer from "@app/infoStorage/components/InfoStorageContainer";
 import HomePageContainer from "@app/homePage/components/HomePageContainer";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import TabBar from "src/common/TabBar";
+import TabBar from "@common/TabBar";
 
 const pages = [
   { heading: "Home", path: "/", icon: "home" },
