@@ -3,24 +3,22 @@ const webpack = require("webpack");
 const path = require("path");
 
 module.exports = {
-  // entry: "./public/index.html",
+  entry: "./src/index",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "/"
+    publicPath: "/",
   },
   resolve: {
     alias: {
-      "@src": "./",
-      "@app": `./app`,
-      "@api": `./api`,
-      "@common": `./common`
-    }
+      "@src": path.resolve(__dirname, "./"),
+      "@app": path.resolve(__dirname, "./src/app"),
+    },
   },
   devServer: {
     host: "localhost",
     port: process.env.PORT || 5000,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -30,51 +28,55 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
+            presets: [
+              "@babel/preset-env",
+              "@babel/preset-react",
+              "@emotion/babel-preset-css-prop",
+            ],
             plugins: [
               "@babel/transform-runtime",
               "@babel/syntax-dynamic-import",
-              "@babel/proposal-class-properties"
-            ]
-          }
-        }
+              "@babel/proposal-class-properties",
+            ],
+          },
+        },
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader"
+            loader: "style-loader",
           },
           {
-            loader: "css-loader"
-          }
-        ]
+            loader: "css-loader",
+          },
+        ],
       },
       {
         test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: [
           {
-            loader: "file-loader"
-          }
-        ]
+            loader: "file-loader",
+          },
+        ],
       },
       {
         test: /\.(png|jpg|gif|ico)$/,
         use: [
           {
-            loader: "file-loader"
-          }
-        ]
-      }
-    ]
+            loader: "file-loader",
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./public/index.html",
-      filename: "./index.html"
+      filename: "./index.html",
     }),
     new webpack.ProvidePlugin({
-      React: "react"
-    })
-  ]
+      React: "react",
+    }),
+  ],
 };
