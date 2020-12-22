@@ -16,6 +16,7 @@ const Note = () => {
 					resize: "none",
 					outline: "none",
 					lineHeight: 1.5,
+					padding: 20,
 					position: "relative",
 					border: "1px solid #E8E8E8",
 					fontSize: "1em",
