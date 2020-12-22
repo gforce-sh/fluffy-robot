@@ -1,14 +1,7 @@
-import InfoStorageContainer from "@app/infoStorage/components/InfoStorageContainer";
-import HomePageContainer from "@app/homePage/components/HomePageContainer";
 import ErrorBoundary from "./app/errorboundary/ErrorBoundary";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
-import TabBar from "@common/TabBar";
+import NoteLayout from "./app/note/Note.layout";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
-const pages = [
-	{ heading: "Home", path: "/", icon: "home" },
-	{ heading: "Info Manager", path: "/infoStorage", icon: "clipboard" },
-	// { heading: "Study", path: "/noteTaker", icon: "pencil alternate" },
-];
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,18 +11,11 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				<ErrorBoundary>
-					<BrowserRouter>
-						<TabBar pages={pages} />
+					<Router>
 						<Switch>
-							<Route exact path="/" component={HomePageContainer} />
-							<Route
-								exact
-								path="/infoStorage"
-								component={InfoStorageContainer}
-							/>
-							{/* <Route exact path="/noteTaker" component={NoteTaker} /> */}
+							<Route exact path="/" component={NoteLayout} />
 						</Switch>
-					</BrowserRouter>
+					</Router>
 				</ErrorBoundary>
 			</div>
 		);

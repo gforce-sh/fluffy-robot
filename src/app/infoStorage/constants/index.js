@@ -1,1 +1,0 @@
-export const INFO_STORAGE_ROUTE = "/infoStorage";
