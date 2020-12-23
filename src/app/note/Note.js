@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Note = () => {
-	const [text, setText] = useState("");
+const Note = ({ joke }) => {
 	const defaultNoteWidth = 475;
 	const defaultNoteHeight = 450;
+	const [text, setText] = useState("");
+	useEffect(() => {
+		setText(joke);
+	}, [joke]);
+
 	return (
 		<div>
 			<textarea
