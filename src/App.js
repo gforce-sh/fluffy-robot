@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import ErrorBoundary from "./app/errorboundary/ErrorBoundary";
 import Navigate from "./app/navigate/Navigate";
 import NoteLayout from "./app/note/Note.layout";
+import Loader from "./common/components/Loader";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +21,12 @@ const App = () => {
 					<Router>
 						<Navigate />
 						<Switch>
-							<Route exact path="/" component={NoteLayout} />
+							<Route
+								exact
+								path="/"
+								render={() => <Loader size="medium" text="Loading" />}
+							/>
+							<Route exact path="/notes" component={NoteLayout} />
 						</Switch>
 					</Router>
 				</QueryClientProvider>
