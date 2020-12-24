@@ -4,12 +4,13 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 // Third-party packages
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Global, css } from "@emotion/react";
 
 // Local components
 import ErrorBoundary from "./app/errorboundary/ErrorBoundary";
 import Navigate from "./app/navigate/Navigate";
 import NoteLayout from "./app/note/Note.layout";
-import Loader from "./common/components/Loader";
+import { Loader } from "./common";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,13 @@ const App = () => {
 	return (
 		<div className="App">
 			<ErrorBoundary>
+				<Global
+					styles={css`
+						body {
+							background: #f3f3f3;
+						}
+					`}
+				/>
 				<QueryClientProvider client={queryClient}>
 					<Router>
 						<Navigate />
