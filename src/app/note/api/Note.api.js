@@ -4,7 +4,7 @@ import { httpGet } from "@common/api";
 
 const useQueryOptions = {
 	refetchOnWindowFocus: false,
-	// staleTime: 300000,
+	staleTime: 300000,
 };
 
 export const useNote = () => {

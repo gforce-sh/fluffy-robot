@@ -1,7 +1,14 @@
 import { keyframes } from "@emotion/core";
 
 const Loader = ({ size, text }) => {
-	const multiplier = size === "large" ? 1 : size === "medium" ? 0.7 : 0.3;
+	const multiplier =
+		size === "large"
+			? 1
+			: size === "medium"
+			? 0.7
+			: size === "small"
+			? 0.5
+			: 0.3;
 	const circleStyle = {
 		width: multiplier * 20,
 		height: multiplier * 20,
@@ -28,11 +35,11 @@ const Loader = ({ size, text }) => {
 				top: 0%;
 			}
 			`} 0.5s alternate infinite ease`,
-		"&:nth-child(2)": {
+		"&:nth-of-type(2)": {
 			left: "45%",
 			animationDelay: "0.2s",
 		},
-		"&:nth-child(3)": {
+		"&:nth-of-type(3)": {
 			left: "auto",
 			right: "15%",
 			animationDelay: "0.3s",
@@ -62,11 +69,11 @@ const Loader = ({ size, text }) => {
 				opacity: 0.4;
 			}
 			`} 0.5s alternate infinite ease`,
-		"&:nth-child(4)": {
+		"&:nth-of-type(4)": {
 			left: "45%",
 			animationDelay: "0.2s",
 		},
-		"&:nth-child(5)": {
+		"&:nth-of-type(5)": {
 			left: "auto",
 			right: "15%",
 			animationDelay: "0.3s",
@@ -79,13 +86,14 @@ const Loader = ({ size, text }) => {
 		left: "50%",
 		top: "50%",
 		transform: "translate(-50%, -50%)",
+		zIndex: 4,
 	};
 	const textStyle = {
 		position: "absolute",
 		top: multiplier * 75,
 		fontFamily: "Lato",
-		fontSize: size === "large" ? 20 : size === "medium" ? 18 : 11,
-		letterSpacing: size === "large" ? 12 : size === "medium" ? 6 : 1,
+		fontSize: multiplier * 20,
+		letterSpacing: multiplier * 12,
 		color: "#6c6f76",
 		left: "15%",
 	};

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
-const Note = ({ joke }) => {
+import { Loader } from "@common";
+
+const Note = ({ joke, loading }) => {
 	const defaultNoteWidth = 475;
 	const defaultNoteHeight = 450;
 	const [text, setText] = useState("");
@@ -10,6 +12,12 @@ const Note = ({ joke }) => {
 
 	return (
 		<div>
+			{loading && (
+				<div
+					css={{ position: "absolute", left: "calc(50% - 50px)", top: "20%" }}>
+					<Loader size="small" text="Loading" />
+				</div>
+			)}
 			<textarea
 				value={text}
 				onChange={(e) => setText(e.target.value)}
