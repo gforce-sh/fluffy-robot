@@ -2,13 +2,14 @@ import Note from "./Note";
 import { useNote } from "./api/Note.api";
 
 const NoteContainer = () => {
-	const { data, isLoading } = useNote();
+	const { data, isFetching, remove } = useNote();
 	return (
 		<Note
 			joke={
 				data?.setup ? `${data.setup} \n ${data.delivery}` : data?.joke || ""
 			}
-			loading={isLoading}
+			loading={isFetching}
+			remove={remove}
 		/>
 	);
 };

@@ -2,10 +2,15 @@ import { useState, useEffect } from "react";
 
 import { Loader } from "@common";
 
-const Note = ({ joke, loading }) => {
+const Note = ({ joke, loading, remove }) => {
 	const defaultNoteWidth = 475;
 	const defaultNoteHeight = 450;
 	const [text, setText] = useState("");
+	useEffect(() => {
+		return () => {
+			remove();
+		};
+	}, []);
 	useEffect(() => {
 		setText(joke);
 	}, [joke]);
