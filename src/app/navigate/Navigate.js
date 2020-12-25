@@ -3,6 +3,12 @@ import { withRouter } from "react-router-dom";
 
 import { Menu, Icon } from "semantic-ui-react";
 
+const pages = [
+	{ name: "home", path: "/", label: "Home" },
+	{ name: "sticky note", path: "/notes", label: "Doodle" },
+	{ name: "book", path: "/study", label: "Notebook" },
+];
+
 const Navigate = ({ history, location }) => {
 	const [dim, setDim] = useState(true);
 
@@ -22,20 +28,16 @@ const Navigate = ({ history, location }) => {
 			onMouseEnter={() => setDim(false)}
 			onMouseLeave={() => setDim(true)}>
 			<Menu compact icon="labeled" size="tiny">
-				<Menu.Item
-					name="home"
-					active={location.pathname === "/"}
-					onClick={() => goToPage("/")}>
-					<Icon name="home" />
-					Home
-				</Menu.Item>
-				<Menu.Item
-					name="sticky note"
-					active={location.pathname === "/notes"}
-					onClick={() => goToPage("/notes")}>
-					<Icon name="sticky note" />
-					Notes
-				</Menu.Item>
+				{pages.map((page) => (
+					<Menu.Item
+						key={page.label}
+						name={page.name}
+						active={location.pathname === page.path}
+						onClick={() => goToPage(page.path)}>
+						<Icon name={page.name} />
+						{page.label}
+					</Menu.Item>
+				))}
 			</Menu>
 		</div>
 	);
