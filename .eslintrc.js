@@ -5,7 +5,13 @@ process.env.NODE_ENV = "production";
 module.exports = {
 	parser: "babel-eslint",
 	plugins: ["prettier", "react-hooks", "jest", "import", "babel"],
-	extends: ["airbnb", "prettier", "prettier/react"],
+	extends: [
+		"airbnb",
+		"prettier",
+		"prettier/react",
+		"react-app",
+		"eslint:recommended",
+	],
 	env: {
 		"jest/globals": true,
 		browser: true,
