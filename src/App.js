@@ -10,6 +10,7 @@ import { Global, css } from "@emotion/react";
 import ErrorBoundary from "./app/errorboundary/ErrorBoundary";
 import Navigate from "./app/navigate/Navigate";
 import NoteLayout from "./app/note/Note.layout";
+import NoteBook from "./app/notebook/Notebook";
 import { Loader } from "./common";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => {
 								render={() => <Loader size="medium" text="Loading" />}
 							/>
 							<Route exact path="/notes" component={NoteLayout} />
+							<Route exact path="/study" component={NoteBook} />
 						</Switch>
 					</Router>
 				</QueryClientProvider>
