@@ -2,24 +2,11 @@ import { useState, useCallback } from "react";
 
 import { Header, Icon, Segment } from "semantic-ui-react";
 
-const Dropzone = () => (
-	<div
-		onDrop={(e) => {
-			e.preventDefault();
-			const formData = new FormData();
-			formData.append("file", e.dataTransfer.files[0]);
-		}}>
-		<Segment placeholder>
-			<Header icon>
-				<Icon name="pdf file outline" />
-				Add informatic here
-			</Header>
-		</Segment>
-	</div>
-);
+import Editor from "./Editor";
 
 const Notebook = () => {
 	const [entered, setEntered] = useState(false);
+	const [file, setFile] = useState({});
 
 	const handleDragEnter = useCallback((e) => {
 		setEntered(true);
@@ -35,15 +22,32 @@ const Notebook = () => {
 			onDragOver={(e) => e.preventDefault()}
 			onMouseLeave={handleMouseLeave}
 			css={{
-				minHeight: 150,
-				minWidth: 300,
-				background: "#6c6f76",
+				width: "100%",
+				background: "#fff",
 				marginTop: 200,
 			}}>
 			{entered ? (
-				<Dropzone />
+				<div
+					onDrop={(e) => {
+						e.preventDefault();
+						if (e?.dataTransfer?.files?.[0]) {
+							setFile(
+								Object.assign(e.dataTransfer.files[0], {
+									preview: URL.createObjectURL(e.dataTransfer.files[0]),
+								})
+							);
+							// console.log("file", e.dataTransfer.files[0]);
+						}
+					}}>
+					<Segment placeholder>
+						<Header icon>
+							<Icon name="pdf file outline" />
+							Add informatic here
+						</Header>
+					</Segment>
+				</div>
 			) : (
-				<textarea css={{ width: "100%", height: "100%" }} />
+				<Editor />
 			)}
 		</div>
 	);
