@@ -27,7 +27,7 @@ const Navigate = ({ history, location }) => {
 			}}
 			onMouseEnter={() => setDim(false)}
 			onMouseLeave={() => setDim(true)}>
-			<Menu compact icon="labeled" size="tiny">
+			<Menu compact vertical icon="labeled" size="tiny">
 				{pages.map((page) => (
 					<Menu.Item
 						key={page.label}
