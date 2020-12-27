@@ -17,30 +17,32 @@ const queryClient = new QueryClient();
 
 const App = () => {
 	return (
-		<div className="App">
-			<ErrorBoundary>
-				<Global
-					styles={css`
-						body {
-							background: #f3f3f3;
-						}
-					`}
-				/>
-				<QueryClientProvider client={queryClient}>
-					<Router>
-						<Navigate />
-						<Switch>
-							<Route
-								exact
-								path="/"
-								render={() => <Loader size="medium" text="Loading" />}
-							/>
-							<Route exact path="/notes" component={NoteLayout} />
-							<Route exact path="/study" component={NoteBook} />
-						</Switch>
-					</Router>
-				</QueryClientProvider>
-			</ErrorBoundary>
+		<div css={{ display: "flex", justifyContent: "center" }} className="App">
+			<div css={{ width: 1200 }}>
+				<ErrorBoundary>
+					<Global
+						styles={css`
+							body {
+								background: #f3f3f3;
+							}
+						`}
+					/>
+					<QueryClientProvider client={queryClient}>
+						<Router>
+							<Navigate />
+							<Switch>
+								<Route
+									exact
+									path="/"
+									render={() => <Loader size="medium" text="Loading" />}
+								/>
+								<Route exact path="/notes" component={NoteLayout} />
+								<Route exact path="/study" component={NoteBook} />
+							</Switch>
+						</Router>
+					</QueryClientProvider>
+				</ErrorBoundary>
+			</div>
 		</div>
 	);
 };
