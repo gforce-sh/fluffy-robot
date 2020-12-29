@@ -5,11 +5,10 @@ import { useNote } from "./api/Note.api";
 
 const NoteContainer = () => {
 	const [textInState, setTextInState] = useState("");
-	const { getNote = {}, editNote = {} } = useNote({
-		text: textInState,
-	});
+	const [isSaved, setIsSaved] = useState(true);
+	const { getNote = {}, editNote = {} } = useNote();
 	const { data, isFetching, remove, isError } = getNote;
-	const { mutate, isSuccess, isError: isEditError, isLoading } = editNote;
+	const { mutate, isError: isEditError, isLoading } = editNote;
 
 	useEffect(() => {
 		setTextInState(data?.text || "");
@@ -21,6 +20,11 @@ const NoteContainer = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		if (data?.text !== textInState && isSaved) setIsSaved(false);
+		if (data?.text === textInState && !isSaved) setIsSaved(true);
+	}, [setIsSaved, data, textInState]);
+
 	const onEditNote = useCallback(() => {
 		mutate({ text: textInState });
 	}, [mutate, textInState]);
@@ -28,10 +32,12 @@ const NoteContainer = () => {
 	return (
 		<Note
 			textInState={textInState}
-			loading={isFetching || isLoading}
+			loading={isFetching}
 			errorOccured={isError || isEditError}
 			setTextInState={setTextInState}
 			onEditNote={onEditNote}
+			saving={isLoading}
+			isSaved={isSaved}
 		/>
 	);
 };

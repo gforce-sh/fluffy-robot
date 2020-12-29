@@ -1,19 +1,54 @@
-import { Button } from "semantic-ui-react";
+import { Loader as SuiLoader, Icon } from "semantic-ui-react";
 
 import { Loader } from "@common";
 
-const Note = ({ textInState, loading, setTextInState, onEditNote }) => {
+const Note = ({
+	textInState,
+	loading,
+	setTextInState,
+	onEditNote,
+	saving,
+	isSaved,
+}) => {
 	const defaultNoteWidth = 475;
 	const defaultNoteHeight = 450;
 
 	return (
-		<div>
+		<div
+			css={{
+				position: "relative",
+				display: "flex",
+				flexDirection: "column",
+			}}>
 			{loading && (
 				<div
-					css={{ position: "absolute", left: "calc(50% - 50px)", top: "20%" }}>
-					<Loader size="small" text="Loading" />
+					css={{
+						position: "absolute",
+						left: "50%",
+						top: "20%",
+					}}>
+					<Loader size="small" />
 				</div>
 			)}
+			<div
+				css={{
+					marginBottom: 20,
+					display: "flex",
+					justifyContent: "flex-end",
+					alignItems: "center",
+				}}>
+				<div css={{ marginRight: 5 }}>{isSaved ? "Up to date" : ""}</div>
+				{saving ? (
+					<SuiLoader size="mini" />
+				) : (
+					<Icon
+						size="large"
+						name="save"
+						onClick={onEditNote}
+						disabled={isSaved}
+					/>
+				)}
+			</div>
 			<textarea
 				value={textInState}
 				onChange={(e) => setTextInState(e.target.value)}
@@ -47,9 +82,6 @@ const Note = ({ textInState, loading, setTextInState, onEditNote }) => {
 						"progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffffc6',GradientType=1 )",
 				}}
 			/>
-			<div css={{ marginTop: 20 }}>
-				<Button color="teal" content="Save" onClick={onEditNote} />
-			</div>
 		</div>
 	);
 };
