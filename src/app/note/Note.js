@@ -1,19 +1,10 @@
-import { useState, useEffect } from "react";
+import { Button } from "semantic-ui-react";
 
 import { Loader } from "@common";
 
-const Note = ({ joke, loading, remove }) => {
+const Note = ({ textInState, loading, setTextInState, onEditNote }) => {
 	const defaultNoteWidth = 475;
 	const defaultNoteHeight = 450;
-	const [text, setText] = useState("");
-	useEffect(() => {
-		return () => {
-			remove();
-		};
-	}, []);
-	useEffect(() => {
-		setText(joke);
-	}, [joke]);
 
 	return (
 		<div>
@@ -24,8 +15,8 @@ const Note = ({ joke, loading, remove }) => {
 				</div>
 			)}
 			<textarea
-				value={text}
-				onChange={(e) => setText(e.target.value)}
+				value={textInState}
+				onChange={(e) => setTextInState(e.target.value)}
 				placeholder="Add your notes here..."
 				css={{
 					width: defaultNoteWidth,
@@ -56,6 +47,9 @@ const Note = ({ joke, loading, remove }) => {
 						"progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffffc6',GradientType=1 )",
 				}}
 			/>
+			<div css={{ marginTop: 20 }}>
+				<Button color="teal" content="Save" onClick={onEditNote} />
+			</div>
 		</div>
 	);
 };

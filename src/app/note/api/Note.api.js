@@ -1,13 +1,11 @@
-import { useQuery } from "react-query";
-
-import { httpGet } from "@common/api";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 
 const useQueryOptions = {
 	refetchOnWindowFocus: false,
 	staleTime: 300000,
 };
 
-export const useNote = () => {
+export const useJoke = () => {
 	return useQuery(
 		"addJoke",
 		() =>
@@ -16,4 +14,39 @@ export const useNote = () => {
 			).then((res) => res.json()),
 		useQueryOptions
 	);
+};
+
+export const useNote = () => {
+	const queryClient = useQueryClient();
+	const getNote = useQuery(
+		"notes",
+		() => fetch("http://localhost:3005/notes").then((res) => res.json()),
+		useQueryOptions
+	);
+
+	const postNote = useMutation((note) =>
+		fetch("http://localhost:3005/notes", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(note),
+		}).then((res) => res.json())
+	);
+
+	const editNote = useMutation(
+		(note) =>
+			fetch(`http://localhost:3005/notes/update/${getNote?.data?._id}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(note),
+			}).then((res) => res.json()),
+		{
+			onSuccess: () => queryClient.invalidateQueries("notes", { exact: true }),
+		}
+	);
+
+	return { getNote, postNote, editNote };
 };
