@@ -6,7 +6,7 @@ import { Menu, Icon } from "semantic-ui-react";
 const pages = [
 	{ name: "home", path: "/", label: "Home" },
 	{ name: "sticky note", path: "/notes", label: "Doodle" },
-	{ name: "book", path: "/study", label: "Notebook" },
+	{ name: "book", path: "/study", label: "Notebook", disabled: true },
 ];
 
 const Navigate = ({ history, location }) => {
@@ -33,6 +33,7 @@ const Navigate = ({ history, location }) => {
 						key={page.label}
 						name={page.name}
 						active={location.pathname === page.path}
+						disabled={!!page.disabled}
 						onClick={() => goToPage(page.path)}>
 						<Icon name={page.name} />
 						{page.label}
