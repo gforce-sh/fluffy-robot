@@ -9,6 +9,7 @@ const Note = ({
 	onEditNote,
 	saving,
 	isSaved,
+	isEditError,
 }) => {
 	const defaultNoteWidth = 475;
 	const defaultNoteHeight = 450;
@@ -37,11 +38,18 @@ const Note = ({
 					justifyContent: "flex-end",
 					alignItems: "center",
 				}}>
-				<div css={{ marginRight: 5 }}>{isSaved ? "Up to date" : ""}</div>
+				<div css={{ marginRight: 5, color: isEditError ? "red" : "#6c6f76" }}>
+					{isSaved
+						? "Up to date"
+						: isEditError
+						? "An error occurred. Please try again"
+						: ""}
+				</div>
 				{saving ? (
-					<SuiLoader size="mini" />
+					<Icon size="large" loading name="spinner" />
 				) : (
 					<Icon
+						css={{ cursor: isSaved ? "initial" : "pointer" }}
 						size="large"
 						name="save"
 						onClick={onEditNote}

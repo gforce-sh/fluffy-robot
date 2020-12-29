@@ -32,12 +32,13 @@ const NoteContainer = () => {
 	return (
 		<Note
 			textInState={textInState}
-			loading={isFetching}
+			loading={isFetching && !data}
 			errorOccured={isError || isEditError}
 			setTextInState={setTextInState}
 			onEditNote={onEditNote}
 			saving={isLoading}
 			isSaved={isSaved}
+			isEditError={isEditError}
 		/>
 	);
 };
